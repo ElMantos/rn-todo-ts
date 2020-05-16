@@ -1,15 +1,26 @@
 import React from "react";
-import { TouchableOpacity, Text } from "react-native";
+import { TouchableOpacity, Text, StyleSheet } from "react-native";
 import tailwind from "tailwind-rn";
 
-const Button: React.FC = ({ onPress }) => {
+interface Props {
+  label: boolean;
+  onPress: () => null;
+}
+
+const Button: React.FC<Props> = ({ label, onPress, style = [] }) => {
   return (
     <TouchableOpacity
-      style={tailwind(
-        "rounded-full border-2 rounded-lg py-2 px-4 bg-blue-100 border-blue-600"
-      )}
+      onPress={onPress}
+      style={{
+        ...StyleSheet.flatten([
+          tailwind(
+            "rounded-full border rounded-full py-2 px-4 bg-blue-300 border-blue-800"
+          ),
+          style
+        ])
+      }}
     >
-      <Text style={tailwind("text-xl")}>Testing</Text>
+      <Text style={tailwind("text-xl text-center text-gray-800")}>{label}</Text>
     </TouchableOpacity>
   );
 };

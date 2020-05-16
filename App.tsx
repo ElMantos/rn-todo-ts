@@ -1,13 +1,11 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-
-import { List, Button } from "./src/components";
+import CoreApp from "./src";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <List />
-      <Button />
+      <CoreApp />
     </View>
   );
 }
