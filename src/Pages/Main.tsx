@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, ScrollView, Text, Dimensions } from "react-native";
+import { View, Text, Dimensions } from "react-native";
 import { useHistory } from "react-router-native";
 import tailwind from "tailwind-rn";
 import Modal from "react-native-modal";

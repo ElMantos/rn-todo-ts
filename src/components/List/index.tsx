@@ -1,6 +1,8 @@
 import React from "react";
 import tailwind from "tailwind-rn";
-import { ScrollView, Text } from "react-native";
+import { ScrollView, Text, View, Dimensions } from "react-native";
+
+const { height: screenHeight } = Dimensions.get("screen");
 
 interface ListItemProps {
   name?: string;
@@ -13,16 +15,32 @@ interface Props {
 
 const List: React.FC<Props> = ({ items }) => {
   return (
-    <ScrollView
-      contentContainerStyle={tailwind("flex justify-center items-center")}
-      style={tailwind("w-full bg-blue-200 rounded-lg mt-4 h-12")}
+    <View
+      style={{
+        ...tailwind("mb-64"),
+        height: (screenHeight / 100) * 80
+      }}
     >
-      {items.map(({ name, description }: ListItemProps) => (
-        <Text key={`${name}.${Math.random()}`}>
-          {name} {description}
-        </Text>
-      ))}
-    </ScrollView>
+      <ScrollView
+        contentContainerStyle={tailwind("flex justify-center items-center")}
+        style={{
+          ...tailwind("w-full rounded-lg mt-4 h-12"),
+          backgroundColor: "rgba(252, 186, 3, .3)"
+        }}
+      >
+        {items.length ? (
+          items.map(({ name, description }: ListItemProps) => (
+            <Text key={`${name}.${Math.random()}`}>
+              {name} {description}
+            </Text>
+          ))
+        ) : (
+          <Text style={tailwind("text-xl text-gray-200 mt-4")}>
+            You currently have nothing planned
+          </Text>
+        )}
+      </ScrollView>
+    </View>
   );
 };
 export default List;
