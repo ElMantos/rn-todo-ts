@@ -3,8 +3,9 @@ import { TouchableOpacity, Text, StyleSheet } from "react-native";
 import tailwind from "tailwind-rn";
 
 interface Props {
-  label: boolean;
+  label: string;
   onPress: () => null;
+  style?: object;
 }
 
 const Button: React.FC<Props> = ({ label, onPress, style = [] }) => {

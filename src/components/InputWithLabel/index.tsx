@@ -4,7 +4,11 @@ import tailwind from "tailwind-rn";
 
 import Input from "../Input";
 
-const InputWithLabel: React.FC = ({ label }) => {
+interface Props {
+  label: string;
+}
+
+const InputWithLabel: React.FC<Props> = ({ label }) => {
   return (
     <View style={tailwind("flex flex-col items-center mt-3")}>
       <Text style={tailwind("text-lg mb-1")}>{label}</Text>

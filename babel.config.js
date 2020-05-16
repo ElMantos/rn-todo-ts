@@ -11,6 +11,6 @@ module.exports = function(api) {
         }
       ]
     ],
-    presets: ["babel-preset-expo"]
+    presets: ["@babel/preset-typescript", "babel-preset-expo"]
   };
 };

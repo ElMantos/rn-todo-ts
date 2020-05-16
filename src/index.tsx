@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { View } from "react-native";
-import { List, Button } from "./components";
 import RoutedApp from "./RoutedApp";
 import tailwind from "tailwind-rn";
 
-const App: React.RC = () => {
+const App: React.FC = () => {
   return (
     <View style={tailwind("h-full w-full mt-20")}>
       <RoutedApp />
