@@ -18,12 +18,18 @@ const Main: React.FC = () => {
     <View style={tailwind("h-full px-2 flex justify-start")}>
       <View style={tailwind("w-full flex flex-row justify-between")}>
         <Button
-          style={tailwind("w-1/2 bg-green-600 border")}
+          style={{
+            ...tailwind("w-1/2 border"),
+            backgroundColor: "rgb(19, 194, 179)"
+          }}
           onPress={(): any => setDisplayModal(true)}
           label="Create new"
         />
         <Button
-          style={tailwind("w-1/2 bg-teal-400 border border-l-0")}
+          style={{
+            ...tailwind("w-1/2 border border-l-0"),
+            backgroundColor: "rgb(184, 0, 138)"
+          }}
           onPress={(): any => history.push("/history")}
           label="See old"
         />
@@ -34,11 +40,12 @@ const Main: React.FC = () => {
         deviceWidth={deviceWidth}
         deviceHeight={deviceHeight}
         isVisible={displayModal}
+        swipeDirection={["up", "down"]}
         onSwipeComplete={() => {
           setDisplayModal(false);
         }}
       >
-        <ScrollView style={tailwind("bg-white rounded-lg p-2")}>
+        <View style={tailwind("bg-white rounded-lg p-2")}>
           <Text style={tailwind("text-center text-lg")}>ADD NEW TASK</Text>
           <InputWithLabel
             value={taskName}
@@ -70,7 +77,7 @@ const Main: React.FC = () => {
               label="Some label"
             />
           </View>
-        </ScrollView>
+        </View>
       </Modal>
     </View>
   );
