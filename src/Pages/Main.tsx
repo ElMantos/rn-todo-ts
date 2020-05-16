@@ -18,15 +18,23 @@ const Main: React.FC = () => {
         <Button onPress={(): any => setDisplayModal(true)} label="Create new" />
         <Button onPress={(): any => history.push("/history")} label="See old" />
         <Modal
+          swipeDirection={["down", "up"]}
           deviceWidth={deviceWidth}
           deviceHeight={deviceHeight}
           isVisible={displayModal}
+          onSwipeComplete={() => {
+            setDisplayModal(false);
+          }}
         >
           <ScrollView style={tailwind("bg-white rounded-lg p-2")}>
             <Text style={tailwind("text-center text-lg")}>ADD NEW TASK</Text>
             <InputWithLabel label="Name" />
             <InputWithLabel label="Description" />
-            <View style={tailwind("items-center flex-row justify-center mt-2")}>
+            <View
+              style={tailwind(
+                "items-center flex-row justify-center mt-2 mb-10"
+              )}
+            >
               <Button
                 onPress={(): any => {
                   setTasks([...tasks, { name: "some name" }]);
