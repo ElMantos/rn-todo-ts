@@ -14,14 +14,14 @@ const Button: React.FC<Props> = ({ label, onPress, style = [] }) => {
       onPress={onPress}
       style={{
         ...StyleSheet.flatten([
-          tailwind(
-            "rounded-full border rounded-full py-2 px-4 bg-blue-300 border-blue-800"
-          ),
+          tailwind("py-2 px-4 bg-blue-300 border-blue-800"),
           style
         ])
       }}
     >
-      <Text style={tailwind("text-xl text-center text-gray-800")}>{label}</Text>
+      <Text style={tailwind("text-xl font-bold text-white text-center")}>
+        {label}
+      </Text>
     </TouchableOpacity>
   );
 };

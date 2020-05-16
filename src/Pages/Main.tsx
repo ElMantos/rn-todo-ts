@@ -17,13 +17,20 @@ const Main: React.FC = () => {
   return (
     <View style={tailwind("h-full px-2 flex justify-start")}>
       <View style={tailwind("w-full flex flex-row justify-between")}>
-        <Button onPress={(): any => setDisplayModal(true)} label="Create new" />
-        <Button onPress={(): any => history.push("/history")} label="See old" />
+        <Button
+          style={tailwind("w-1/2 bg-green-600 border")}
+          onPress={(): any => setDisplayModal(true)}
+          label="Create new"
+        />
+        <Button
+          style={tailwind("w-1/2 bg-teal-400 border border-l-0")}
+          onPress={(): any => history.push("/history")}
+          label="See old"
+        />
       </View>
       <List items={tasks} />
 
       <Modal
-        swipeDirection={["down", "up"]}
         deviceWidth={deviceWidth}
         deviceHeight={deviceHeight}
         isVisible={displayModal}
