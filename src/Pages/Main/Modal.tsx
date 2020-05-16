@@ -3,6 +3,7 @@ import { View, Text, Dimensions } from "react-native";
 import tailwind from "tailwind-rn";
 import RNModal from "react-native-modal";
 import DateTimePicker from "@react-native-community/datetimepicker";
+
 import { TaskInterface } from "./TaskInterface";
 import EventInterface from "./Event";
 import { Button, InputWithLabel } from "~/components";
@@ -28,7 +29,6 @@ const Modal: React.FC<Props> = ({
   const [descriptionError, setDescriptionError] = useState<boolean>(false);
   const [displayDatepicker, setDisplayDatepicker] = useState<boolean>(false);
   const [selectedDatetime, setSelectedDatetime] = useState<Date>(new Date());
-  console.log(selectedDatetime);
   return (
     <RNModal
       deviceWidth={deviceWidth}
@@ -110,8 +110,17 @@ const Modal: React.FC<Props> = ({
           </View>
         </RNModal>
         <Text style={tailwind("w-full text-lg text-center mt-4")}>
-          {`${selectedDatetime.getFullYear()}-${selectedDatetime.getMonth() +
-            1}-${selectedDatetime.getDate()}  ${selectedDatetime.getHours()}:${selectedDatetime.getMinutes()}`}
+          {selectedDatetime
+            ? `${selectedDatetime.getFullYear()}-${
+                String(selectedDatetime.getMonth()).length === 1
+                  ? `0${selectedDatetime.getMonth()}`
+                  : selectedDatetime.getMonth() + 1
+              }-${selectedDatetime.getDate()}  ${
+                String(selectedDatetime.getHours()).length === 1
+                  ? `0${selectedDatetime.getHours()}`
+                  : selectedDatetime.getHours()
+              }:${selectedDatetime.getMinutes()}`
+            : "0000-00-00 00:00"}
         </Text>
         <Button
           onPress={(): null => {
@@ -136,7 +145,8 @@ const Modal: React.FC<Props> = ({
               ...tasks,
               {
                 name: taskName,
-                description: taskDescription
+                description: taskDescription,
+                date: selectedDatetime
               }
             ]);
             setTaskName(null);

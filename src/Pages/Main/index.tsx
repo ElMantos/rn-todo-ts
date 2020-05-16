@@ -1,15 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View } from "react-native";
 import { useHistory } from "react-router-native";
 import tailwind from "tailwind-rn";
-import Modal from "./Modal";
 
+import { getData, saveData } from "~/utils";
+import Modal from "./Modal";
 import { TaskInterface } from "./TaskInterface";
 import { Button, List } from "~/components";
 
 const Main: React.FC = () => {
   const [displayModal, setDisplayModal] = useState<boolean>(false);
   const [tasks, setTasks] = useState<TaskInterface[]>([]);
+
+  useEffect(() => {
+    getData(
+      "tasks",
+      (value: any) => {
+        setTasks(value);
+      },
+      []
+    );
+  }, []);
+
+  useEffect(() => {
+    saveData("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   const history = useHistory();
   return (
