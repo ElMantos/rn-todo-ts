@@ -20,7 +20,10 @@ const Main: React.FC = () => {
             ...tailwind("w-1/2"),
             backgroundColor: "rgb(19, 194, 179)"
           }}
-          onPress={(): any => setDisplayModal(true)}
+          onPress={(): null => {
+            setDisplayModal(true);
+            return null;
+          }}
           label="Create new"
         />
         <Button
@@ -28,7 +31,10 @@ const Main: React.FC = () => {
             ...tailwind("w-1/2"),
             backgroundColor: "rgb(184, 0, 138)"
           }}
-          onPress={(): any => history.push("/history")}
+          onPress={(): null => {
+            history.push("/history");
+            return null;
+          }}
           label="See old"
         />
       </View>
