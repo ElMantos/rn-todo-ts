@@ -9,13 +9,13 @@ import {
 } from "react-native";
 
 import ItemModal from "./ItemModal";
-import { ListItemInterface } from "./ListItemInterface";
 import ListItem from "./ListItem";
+import { TaskInterface } from "~/interfaces";
 
 const { height: screenHeight } = Dimensions.get("screen");
 
 interface Props {
-  items: ListItemInterface[];
+  items: TaskInterface[];
 }
 
 const List: React.FC<Props> = ({ items }) => {
@@ -47,16 +47,14 @@ const List: React.FC<Props> = ({ items }) => {
       >
         {items.length ? (
           items
-            .sort((a: ListItemInterface, b: ListItemInterface): number =>
+            .sort((a: TaskInterface, b: TaskInterface): number =>
               a.date < b.date ? 1 : -1
             )
             .map(
-              (
-                { name, description, date }: ListItemInterface,
-                index: number
-              ) => (
+              ({ name, description, date }: TaskInterface, index: number) => (
                 <TouchableOpacity
-                  key={name}
+                  key={`${name}-${index}`}
+                  style={tailwind("w-full")}
                   onPress={() => {
                     setModalVisible(true);
                     setVisibleItem(index);

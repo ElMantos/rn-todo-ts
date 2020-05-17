@@ -5,7 +5,7 @@ import tailwind from "tailwind-rn";
 
 import { getData, saveData } from "~/utils";
 import Modal from "./Modal";
-import { TaskInterface } from "./TaskInterface";
+import { TaskInterface } from "~/interfaces";
 import { Button, List } from "~/components";
 
 const Main: React.FC = () => {
@@ -25,6 +25,15 @@ const Main: React.FC = () => {
   useEffect(() => {
     saveData("tasks", JSON.stringify(tasks));
   }, [tasks]);
+
+  tasks.filter((task: TaskInterface) => {
+    const date = new Date(task.date.replace(" ", "T"));
+    console.log(task.date);
+    console.log(date);
+    const val = date >= new Date();
+    console.log(val);
+    console.log("_---------------____-");
+  });
 
   const history = useHistory();
   return (
@@ -59,7 +68,13 @@ const Main: React.FC = () => {
         setDisplayModal={setDisplayModal}
         setTasks={setTasks}
       />
-      <List items={tasks} />
+      <List
+        items={tasks.filter(
+          (task: TaskInterface) =>
+            new Date(task.date.replace(" ", "T")).valueOf() >=
+            new Date().valueOf()
+        )}
+      />
     </View>
   );
 };

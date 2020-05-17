@@ -4,7 +4,8 @@ import tailwind from "tailwind-rn";
 import RNModal from "react-native-modal";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
-import { TaskInterface } from "./TaskInterface";
+import { formatDate } from "~/utils";
+import { TaskInterface } from "~/interfaces";
 import EventInterface from "./Event";
 import { Button, InputWithLabel } from "~/components";
 
@@ -110,17 +111,7 @@ const Modal: React.FC<Props> = ({
           </View>
         </RNModal>
         <Text style={tailwind("w-full text-lg text-center mt-4")}>
-          {selectedDatetime
-            ? `${selectedDatetime.getFullYear()}-${
-                String(selectedDatetime.getMonth()).length === 1
-                  ? `0${selectedDatetime.getMonth()}`
-                  : selectedDatetime.getMonth() + 1
-              }-${selectedDatetime.getDate()}  ${
-                String(selectedDatetime.getHours()).length === 1
-                  ? `0${selectedDatetime.getHours()}`
-                  : selectedDatetime.getHours()
-              }:${selectedDatetime.getMinutes()}`
-            : "0000-00-00 00:00"}
+          {selectedDatetime ? formatDate(selectedDatetime) : "0000-00-00 00:00"}
         </Text>
         <Button
           onPress={(): null => {
@@ -146,7 +137,7 @@ const Modal: React.FC<Props> = ({
               {
                 name: taskName,
                 description: taskDescription,
-                date: selectedDatetime
+                date: formatDate(selectedDatetime)
               }
             ]);
             setTaskName(null);
